@@ -12,7 +12,7 @@ class Profile extends CI_Controller {
    public function index()
    {
       $id_user = $this->session->userdata('id_user');
-      $user = $this->User_model->detail($id_user);
+      $user 	= $this->User_model->detail($id_user);
 		
 		// validasi
 		$valid = $this->form_validation;
@@ -20,8 +20,8 @@ class Profile extends CI_Controller {
 
 		if ($valid->run() == FALSE) {
 			$data = [
-				'title'		=> 'Edit User Profil '. $user->nama,
-				'user'		=> $user,
+				'title'	=> 'Edit User Profil '. $user->nama,
+				'user'	=> $user,
 				'isi'		=> 'admin/profile/list'
 			];
 			$this->load->view('admin/layout/wrapper', $data, FALSE);

@@ -8,10 +8,10 @@ class Oops extends CI_Controller {
    {
       $configure = $this->Konfigurasi_model->listing();
       
-      $data = array('title' => 'Oops..',
-                           'keywords' => $configure->keywords . ' - ' . $configure->tagline . ' - ' . $configure->keywords, 
-                           'deskripsi' => $configure->deskripsi,  
-                           'isi' => 'oops/list');
+      $data = array( 'title'     => 'Oops..',
+                     'keywords'  => $configure->keywords . ' - ' . $configure->tagline . ' - ' . $configure->keywords, 
+                     'deskripsi' => $configure->deskripsi,  
+                     'isi'       => 'oops/list');
       $this->load->view('layout/wrapper', $data, FALSE);
    }
 

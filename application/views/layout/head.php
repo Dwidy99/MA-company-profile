@@ -13,15 +13,13 @@ $site_info = $this->Konfigurasi_model->listing();
    <link rel="shortcut icon" href="<?= base_url('assets/uploads/logo/thumbs/'.$site_info->icon); ?>"
       type="image/x-icon" />
    <!-- Font Awesome -->
-   <link rel="stylesheet" href="<?= base_url('assets/template/') ?>fontawesome/css/all.min.css">
+   <link rel="stylesheet" href="<?= base_url('assets/templates/') ?>assets/css/fontawesome-all.min.css">
    <!-- Description -->
    <meta name="description" content="<?= $title; ?>" />
    <!-- Keyword -->
    <meta name="keywords" content="<?= $keywords; ?>" />
    <!-- Author -->
    <meta name="author" content="<?= $site_info->namaweb; ?>" />
-
-   <!-- <link rel="stylesheet" href="<?= base_url('assets/template/'); ?>css/style.css" /> -->
 
    <!-- CSS here -->
    <link rel="stylesheet" href="<?= base_url('assets/templates/') ?>assets/css/bootstrap.min.css">

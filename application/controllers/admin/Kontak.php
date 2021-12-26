@@ -14,22 +14,22 @@ class Kontak extends CI_Controller {
       $pesanPengunjung = $this->Kontak_model->listing();
 
       $data = [
-         'title'		=> 'Pesan Pengunjung ' . '(' . count([$pesanPengunjung]) . ')',
+         'title'		         => 'Pesan Pengunjung ' . '(' . count([$pesanPengunjung]) . ')',
          'pesanPengunjung'		=> $pesanPengunjung,
-         'isi'		=> 'admin/kontak/list'
+         'isi'		            => 'admin/kontak/list'
       ];
       $this->load->view('admin/layout/wrapper', $data, FALSE);
    }
 
    public function detail($id_kontak)
    {
-      $id_kontak = $this->uri->segment(4);
-      $pesanPengunjung = $this->Kontak_model->detail($id_kontak);
+      $id_kontak        = $this->uri->segment(4);
+      $pesanPengunjung  = $this->Kontak_model->detail($id_kontak);
 
       $data = [
-         'title'		=> 'Pesan dari ' . $pesanPengunjung->nama,
+         'title'		         => 'Pesan dari ' . $pesanPengunjung->nama,
          'pesanPengunjung'		=> $pesanPengunjung,
-         'isi'		=> 'admin/kontak/detail'
+         'isi'		            => 'admin/kontak/detail'
       ];
       $this->load->view('admin/layout/wrapper', $data, FALSE);
    }

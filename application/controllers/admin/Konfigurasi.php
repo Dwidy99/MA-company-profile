@@ -20,39 +20,39 @@
    {
      $configure = $this->Konfigurasi_model->listing();
      
-     $this->form_validation->set_rules('namaweb', 'Nama Website', 'required');
-     $this->form_validation->set_rules('email', 'Email', 'valid_email');
-     $this->form_validation->set_rules('telepon', 'Telepon', 'is_natural');
-     $this->form_validation->set_rules('facebook', 'Facebook', 'valid_url');
-     $this->form_validation->set_rules('website', 'Website', 'valid_url');
-     $this->form_validation->set_rules('instagram', 'Instagram', 'valid_url');
+     $valid = $this->form_validation;
+     $valid->set_rules('namaweb', 'Nama Website', 'required');
+     $valid->set_rules('email', 'Email', 'valid_email');
+     $valid->set_rules('telepon', 'Telepon', 'is_natural');
+     $valid->set_rules('facebook', 'Facebook', 'valid_url');
+     $valid->set_rules('website', 'Website', 'valid_url');
+     $valid->set_rules('instagram', 'Instagram', 'valid_url');
      
-     if($this->form_validation->run() == FALSE)
+     if($valid->run() == FALSE)
      {
-        $data = array(  'title'         => 'Konfigurasi Umum',
-                              'configure'   => $configure,
-                              'isi'           => 'admin/konfigurasi/index'
-                              );
-          $this->load->view('admin/layout/wrapper', $data, FALSE);
+        $data = array(  'title'       => 'Konfigurasi Umum',
+                        'configure'   => $configure,
+                        'isi'         => 'admin/konfigurasi/index');
+
+         $this->load->view('admin/layout/wrapper', $data, FALSE);
      } else {
         $i = $this->input;
 
         $data = array(  
-                              'id_konfigurasi' => $configure->id_konfigurasi,
-                              'id_user'        => $this->session->userdata('id_user'),
-                              'namaweb'        => $i->post('namaweb', true),
-                              'tagline'        => $i->post('tagline', true),
-                              'email'          => $i->post('email', true),
-                              'website'        => $i->post('website', true),
-                              'telepon'           => $i->post('telepon', true),
-                              'alamat'       => $i->post('alamat', true),
-                              'deskripsi'       => $i->post('deskripsi', true),
-                              'keywords'       => $i->post('keywords', true),
-                              'metatext'       => $i->post('metatext', true),
-                              'map'           => $i->post('map'),
-                              'facebook'           => $i->post('facebook', true),
-                              'instagram'           => $i->post('instagram', true)
-                              );
+                      'id_konfigurasi' 		=> $configure->id_konfigurasi,
+                      'id_user'    				=> $this->session->userdata('id_user'),
+                      'namaweb'        		=> $i->post('namaweb', true),
+                      'tagline'        		=> $i->post('tagline', true),
+                      'email'          		=> $i->post('email', true),
+                      'website'        		=> $i->post('website', true),
+                      'telepon'           => $i->post('telepon', true),
+                      'alamat'       			=> $i->post('alamat', true),
+                      'deskripsi'       	=> $i->post('deskripsi', true),
+                      'keywords'       		=> $i->post('keywords', true),
+                      'metatext'       		=> $i->post('metatext', true),
+                      'map'           		=> $i->post('map'),
+                      'facebook'          => $i->post('facebook', true),
+                      'instagram'         => $i->post('instagram', true));
          $this->Konfigurasi_model->edit($data);
          $this->session->set_flashdata('success', 'Konfigurasi telah diupdate');
          redirect(base_url('admin/konfigurasi'),'refresh');
@@ -69,16 +69,16 @@
      if($this->form_validation->run())
      {
       // Upload file
-			$config['upload_path']				 = './assets/uploads/logo/';
-			$config['allowed_types']		 	 = 'gif|jpg|png|jpeg';
+			$config['upload_path']				= './assets/uploads/logo/';
+			$config['allowed_types']		 	= 'gif|jpg|png|jpeg';
 			$config['max_size']						= 2000;
-			$config['file_ext_tolower']			= true;
+			$config['file_ext_tolower']		= true;
 			
 			// Cek File Gambar
 			$upload_image = $_FILES['logo']['name'];
 			$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
-			$file_ext       = explode('.', $upload_image);
-			$file_ext       = strtolower(end($file_ext));
+			$file_ext     = explode('.', $upload_image);
+			$file_ext     = strtolower(end($file_ext));
 			
 			if (!in_array($file_ext, $allowed_ext)) {
 				$this->session->set_flashdata('danger', 'Tipe File Tidak Diizinkan!');
@@ -109,9 +109,9 @@
 					// Lalu logo asli itu di copy untuk versi mini size ke folder assets/uploads/images/konfigurasi/thumbs
 					$config['image_library']	= 'gd2';
 					$config['source_image'] 	= './assets/uploads/logo/'.$data['logo']['file_name'];
-					$config['new_image'] 		= './assets/uploads/logo/thumbs/'.$data['logo']['file_name'];
+					$config['new_image'] 			= './assets/uploads/logo/thumbs/'.$data['logo']['file_name'];
 					$config['create_thumb'] 	= TRUE;
-					$config['maintain_ratio'] 	= TRUE;
+					$config['maintain_ratio'] = TRUE;
 					$config['width']         	= 200;
 					$config['height']       	= 200;
 					$config['thumb_marker']		= '';
@@ -127,9 +127,9 @@
 					
 					$i = $this->input;
 					$data = [
-						'id_konfigurasi' 			  		=> $i->post('id_konfigurasi', true),
-						'id_user' 			  		 		=> $this->session->userdata('id_user'),
-						'logo'								=> $data['logo']['file_name'],
+						'id_konfigurasi' 		=> $i->post('id_konfigurasi', true),
+						'id_user' 			 		=> $this->session->userdata('id_user'),
+						'logo'							=> $data['logo']['file_name'],
 					];
 					$this->Konfigurasi_model->edit($data);
 					$this->session->set_flashdata('success', 'Data Berhasil diupdate!');
@@ -137,9 +137,9 @@
 			}
 		}
 		$data = [
-			'title'					=> 'Edit Logo',
-			'configure'    		=> $configure,
-			'isi'						=> 'admin/konfigurasi/logo'
+			'title'				=> 'Edit Logo',
+			'configure'   => $configure,
+			'isi'					=> 'admin/konfigurasi/logo'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
    }
@@ -154,16 +154,16 @@
      if($this->form_validation->run())
      {
       // Upload file
-			$config['upload_path']				 = './assets/uploads/icon/';
-			$config['allowed_types']		 	 = 'gif|jpg|png|jpeg';
+			$config['upload_path']				= './assets/uploads/icon/';
+			$config['allowed_types']		 	= 'gif|jpg|png|jpeg';
 			$config['max_size']						= 2000;
-			$config['file_ext_tolower']			= true;
+			$config['file_ext_tolower']		= true;
 			
 			// Cek File Gambar
 			$upload_image = $_FILES['icon']['name'];
 			$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
-			$file_ext       = explode('.', $upload_image);
-			$file_ext       = strtolower(end($file_ext));
+			$file_ext     = explode('.', $upload_image);
+			$file_ext     = strtolower(end($file_ext));
 			
 			if (!in_array($file_ext, $allowed_ext)) {
 				$this->session->set_flashdata('danger', 'Tipe File Tidak Diizinkan!');
@@ -194,9 +194,9 @@
 					// Lalu icon asli itu di copy untuk versi mini size ke folder assets/uploads/images/konfigurasi/thumbs
 					$config['image_library']	= 'gd2';
 					$config['source_image'] 	= './assets/uploads/icon/'.$data['icon']['file_name'];
-					$config['new_image'] 		= './assets/uploads/icon/thumbs/'.$data['icon']['file_name'];
+					$config['new_image'] 			= './assets/uploads/icon/thumbs/'.$data['icon']['file_name'];
 					$config['create_thumb'] 	= TRUE;
-					$config['maintain_ratio'] 	= TRUE;
+					$config['maintain_ratio'] = TRUE;
 					$config['width']         	= 200;
 					$config['height']       	= 200;
 					$config['thumb_marker']		= '';
@@ -212,9 +212,9 @@
 					
 					$i = $this->input;
 					$data = [
-						'id_konfigurasi' 			  		=> $i->post('id_konfigurasi', true),
-						'id_user' 			  		 		=> $this->session->userdata('id_user'),
-						'icon'								=> $data['icon']['file_name'],
+						'id_konfigurasi' 	=> $i->post('id_konfigurasi', true),
+						'id_user' 		 		=> $this->session->userdata('id_user'),
+						'icon'						=> $data['icon']['file_name'],
 					];
 					$this->Konfigurasi_model->edit($data);
 					$this->session->set_flashdata('success', 'Data Berhasil diupdate!');
@@ -222,9 +222,9 @@
 			}
 		}
 		$data = [
-			'title'					=> 'Edit Icon',
-			'configure'    		=> $configure,
-			'isi'						=> 'admin/konfigurasi/icon'
+			'title'				=> 'Edit Icon',
+			'configure'   => $configure,
+			'isi'					=> 'admin/konfigurasi/icon'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
    }

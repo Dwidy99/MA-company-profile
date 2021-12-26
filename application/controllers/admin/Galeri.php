@@ -15,7 +15,7 @@ class Galeri extends CI_Controller {
 
 		$data = [
 			'title'		=> 'Data Galeri ('. count($Galleries) .')',
-			'galleries'		=> $Galleries,
+			'galleries'	=> $Galleries,
 			'isi'		=> 'admin/galeri/list'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
@@ -26,18 +26,18 @@ class Galeri extends CI_Controller {
 		$news 	= $this->Berita_model->kategori_admin($id_kategori);
 		$kategori 	= $this->KategoriBerita_model->detail($id_kategori);
 
-		$data = array(	'title'			=> 'Kategori berita: '.$kategori->nama_kategori.' ('.count($news).')',
-						'news'		=> $news,
-						'isi'			=> 'admin/berita/list');
+		$data = array(	'title'	=> 'Kategori berita: '.$kategori->nama_kategori.' ('.count($news).')',
+						'news'	=> $news,
+						'isi'	=> 'admin/berita/list');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
 	// Jenis galeri
 	public function jenis_galeri($jenis_galeri)	{
 		$berita = $this->berita_model->jenis_admin($jenis_galeri);
-		$data = array(	'title'			=> 'Jenis berita: '.$jenis_galeri.' ('.count($berita).')',
-						'berita'		=> $berita,
-						'isi'			=> 'admin/berita/list');
+		$data = array(	'title'		=> 'Jenis berita: '.$jenis_galeri.' ('.count($berita).')',
+						'berita'	=> $berita,
+						'isi'		=> 'admin/berita/list');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
@@ -53,15 +53,15 @@ class Galeri extends CI_Controller {
 		
 		if ($valid->run()) {
 			// Upload file
-			$config['upload_path']				 = './assets/uploads/galeri';
-			$config['allowed_types']		 	 = 'gif|jpg|png|jpeg';
-			$config['max_size']						= 5000;
-         $config['file_ext_tolower']			= true;
+			$config['upload_path']		= './assets/uploads/galeri';
+			$config['allowed_types']	= 'gif|jpg|png|jpeg';
+			$config['max_size']			= 5000;
+         $config['file_ext_tolower']	= true;
 			
 			$upload_image = $_FILES['gambar']['name'];
 			$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
-			$file_ext       = explode('.', $upload_image);
-			$file_ext       = strtolower(end($file_ext));
+			$file_ext     = explode('.', $upload_image);
+			$file_ext     = strtolower(end($file_ext));
 			
 			if (!in_array($file_ext, $allowed_ext)) {
 				$this->session->set_flashdata('danger', 'Tipe File Tidak Diizinkan!');
@@ -102,15 +102,15 @@ class Galeri extends CI_Controller {
 					$this->load->library('image_lib', $config);
 					$this->image_lib->resize();
 					
-					$i = $this->input;
-					$data = [
-						'id_user' 			  		 	=> $this->session->userdata('id_user'),
-						'judul_galeri'		 	=> $i->post('judul_galeri', true),
-						'isi_galeri'				 	=> $i->post('isi_galeri', true),
-						'gambar'							=> $data['gambar']['file_name'],
-						'website'			 => $i->post('website', true),
-						'posisi_galeri'			=> $i->post('posisi_galeri', true),
-						'tanggal_post'		 	  	=> date('Y-m-d H:i:s')
+					$i 		= $this->input;
+					$data 	= [
+						'id_user'		 	=> $this->session->userdata('id_user'),
+						'judul_galeri'		=> $i->post('judul_galeri', true),
+						'isi_galeri'	 	=> $i->post('isi_galeri', true),
+						'gambar'			=> $data['gambar']['file_name'],
+						'website'			=> $i->post('website', true),
+						'posisi_galeri'		=> $i->post('posisi_galeri', true),
+						'tanggal_post'	  	=> date('Y-m-d H:i:s')
 					];
 					$this->Galeri_model->tambah($data);
 					$this->session->set_flashdata('success', 'Galeri Berhasil ditambahkan!');
@@ -118,8 +118,8 @@ class Galeri extends CI_Controller {
 			}
 		}
 		$data = [
-			'title'					=> 'Tambah Galeri',
-			'isi'						=> 'admin/galeri/tambah'
+			'title'	=> 'Tambah Galeri',
+			'isi'	=> 'admin/galeri/tambah'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
@@ -139,15 +139,15 @@ class Galeri extends CI_Controller {
 			// Jika tidak ganti gambar
 			if (!empty($_FILES['gambar']['name'])) {
 				// Upload file
-				$config['upload_path']				 = './assets/uploads/galeri';
-				$config['allowed_types']		 	 = 'gif|jpg|png|jpeg';
-				$config['max_size']						= 5000;
-            $config['file_ext_tolower']			= true;
+				$config['upload_path']		= './assets/uploads/galeri';
+				$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
+				$config['max_size']			= 5000;
+            $config['file_ext_tolower']		= true;
 				
 				$upload_image = $_FILES['gambar']['name'];
 				$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
-				$file_ext       = explode('.', $upload_image);
-				$file_ext       = strtolower(end($file_ext));
+				$file_ext     = explode('.', $upload_image);
+				$file_ext     = strtolower(end($file_ext));
 	
 				if (!in_array($file_ext, $allowed_ext)) {
 					$this->session->set_flashdata('danger', 'Tipe File Tidak Diizinkan!');
@@ -205,16 +205,17 @@ class Galeri extends CI_Controller {
 			}
 		}
 		$data = [
-			'title'					=> 'Edit Galeri',
-			'galleries'				=> $Galleries,
-			'isi'						=> 'admin/galeri/edit'
+			'title'			=> 'Edit Galeri',
+			'galleries'		=> $Galleries,
+			'isi'			=> 'admin/galeri/edit'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
 
 	// Delete
-	public function hapus($id_galeri)
+	public function hapus($id_galeri = NULL)
 	{
+		if ($id_galeri == NUL) {redirect('oop','refresh');}
 		// Proteksi delete
 		$this->check_login->check();
 

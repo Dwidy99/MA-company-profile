@@ -36,10 +36,10 @@ class Login extends CI_Controller {
       if ($user) {
          if (password_verify($password, $user->password)) {
             $data = array(
-               'id_user' => $user->id_user,
-               'username' => $user->username,
-               'nama' => $user->nama,
-               'akses_level' => $user->akses_level
+               'id_user'      => $user->id_user,
+               'username'     => $user->username,
+               'nama'         => $user->nama,
+               'akses_level'  => $user->akses_level
             );
             $this->session->set_userdata($data);
             $this->session->set_flashdata('success', 'Anda berhasil login');
@@ -67,14 +67,14 @@ class Login extends CI_Controller {
           );
           $this->load->view('admin/login/lupaPassword', $data, FALSE);
        } else {
-          $email = $this->input->post('email', true);
-         $user = $this->db->get_where('users', ['email' => $email])->row();
+         $email   = $this->input->post('email', true);
+         $user    = $this->db->get_where('users', ['email' => $email])->row();
 
          if ($user) {
             $token = base64_encode(random_bytes(32));
             $user_token = [
-               'email' => $email,
-               'user_token' => $token,
+               'email'        => $email,
+               'user_token'   => $token,
                'tanggal_buat' => time()
             ];
             $this->db->insert('users_token', $user_token);
@@ -91,22 +91,22 @@ class Login extends CI_Controller {
    private function _sendEmail($token, $email, $type)
    {
       $config = array();
-		$config['charset'] = 'utf-8';
-		$config['useragent'] = 'CodeIgniter';
-		$config['protocol'] = "smtp";
-		$config['mailtype'] = "html";
+		$config['charset']       = 'utf-8';
+		$config['useragent']     = 'CodeIgniter';
+		$config['protocol']      = "smtp";
+		$config['mailtype']      = "html";
 			// Pengaturan smtp
-      $config['smtp_host'] = "ssl://smtp.gmail.com"; 
-      $config['smtp_port'] = '465';
-		$config['smtp_timeout'] = "5";
+      $config['smtp_host']     = "ssl://smtp.gmail.com"; 
+      $config['smtp_port']     = '465';
+		$config['smtp_timeout']  = "5";
 			// Isi dengan email kamu
-		$config['smtp_user'] = "youremail@gmail.com";
+		$config['smtp_user']     = "youremail@gmail.com";
 			// Isi dengan password kamu
-		$config['smtp_pass'] = "yourpassword"; 
-      $config['starttls']  = true;
-		$config['crlf'] ="\r\n"; 
-		$config['newline'] ="\r\n"; 
-		$config['wordwrap'] = TRUE;
+		$config['smtp_pass']     = "yourpassword"; 
+      $config['starttls']      = true;
+		$config['crlf']          ="\r\n"; 
+		$config['newline']       ="\r\n"; 
+		$config['wordwrap']      = TRUE;
 			// Memanggil library email dan set konfigurasi untuk pengiriman email
 
       $this->load->library('email',$config); 
@@ -139,10 +139,10 @@ class Login extends CI_Controller {
    // reset Password
    public function resetPassword()
    {
-      $email = $this->input->get('email', true);
-      $token = $this->input->get('token', true);
+      $email   = $this->input->get('email', true);
+      $token   = $this->input->get('token', true);
       
-      $user = $this->db->get_where('users', ['email' => $email])->row();
+      $user    = $this->db->get_where('users', ['email' => $email])->row();
 
       if ($user) {
          if ($token) {

@@ -32,23 +32,23 @@ class User extends CI_Controller {
 		$valid->set_rules('nama', 'Nama', 'required', ['required' => '%s harus diisi']);
 		$valid->set_rules('email', 'Email', 'required|valid_email|is_unique[users.email]', 
 			[
-				'required' => '%s harus diisi',
-				'valid_email' => '%s tidak valid', 'is_unique' => '%s <b>'. $email .'</b> sudah terdaftar gunakan email lain'
+				'required' 		=> '%s harus diisi',
+				'valid_email' 	=> '%s tidak valid', 'is_unique' => '%s <b>'. $email .'</b> sudah terdaftar gunakan email lain'
 			]
 		);
 		$valid->set_rules('username', 'Username', 'required|trim|is_unique[users.username]|min_length[6]|max_length[32]', 
 			[
-				'required' => '%s harus diisi',
-				'is_unique' => '%s <b>'. $username .'</b> sudah terdaftar gunakan username lain',
-				'min_length' => '%s minimal 6 karakter',
-				'max_length' => '%s maksimal 32 karakter'
+				'required' 		=> '%s harus diisi',
+				'is_unique' 	=> '%s <b>'. $username .'</b> sudah terdaftar gunakan username lain',
+				'min_length' 	=> '%s minimal 6 karakter',
+				'max_length' 	=> '%s maksimal 32 karakter'
 			]
 		);
 		$valid->set_rules('password', 'Password', 'required|trim|min_length[6]', 
 			[
-				'required' => '%s harus diisi',
-				'is_unique' => '%s sudah terdaftar gunanak %s lain', 
-				'min_length' => '%s minimal 6 karakter'
+				'required' 		=> '%s harus diisi',
+				'is_unique' 	=> '%s sudah terdaftar gunanak %s lain', 
+				'min_length' 	=> '%s minimal 6 karakter'
 			]
 
 		);
@@ -74,7 +74,7 @@ class User extends CI_Controller {
 	}
 
 	// Edit
-	public function edit($id_user = '')
+	public function edit($id_user = NULL)
 	{
 		$user = $this->User_model->detail($id_user);
 		

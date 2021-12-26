@@ -1,45 +1,47 @@
 <?php $site_info = $this->Konfigurasi_model->listing(); ?>
 <footer>
-   <!-- footer-bottom aera -->
-   <div class="footer-bottom-area">
-      <div class="container">
-         <div class="footer-border">
-            <div class="row d-flex align-items-center justify-content-between">
-               <div class="col-lg-6">
-                  <div class="footer-copy-right">
-                     <p>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                        Copyright &copy;<script>
-                        document.write(new Date().getFullYear());
-                        </script> All rights reserved | by <a href="<?= $site_info->namaweb; ?>"
-                           target="_blank"><?= $site_info->namaweb; ?></a>
-                        <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                     </p>
-                  </div>
-               </div>
-               <div class="col-lg-6">
-                  <div class="footer-menu f-right">
-                     <ul>
-                        <li><a href="<?= base_url('berita') ?>">Berita |</a></li>
-                        <li><a href="<?= base_url('layanan') ?>">Layanan |</a></li>
-                        <li><a href="<?= base_url('kontak') ?>">Kontak</a></li>
-                     </ul>
-                  </div>
-               </div>
+    <!-- footer-bottom aera -->
+    <div class="footer-bottom-area">
+        <div class="container">
+            <div class="footer-border">
+                <div class="row d-flex align-items-center justify-content-between">
+                    <div class="col-lg-6">
+                        <div class="footer-copy-right">
+                            <p>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                Copyright &copy;<script>
+                                document.write(new Date().getFullYear());
+                                </script> All rights reserved | by <a href="<?= $site_info->namaweb; ?>"
+                                    target="_blank"><?= $site_info->namaweb; ?></a>
+                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="footer-menu f-right">
+                            <ul>
+                                <li><a href="<?= base_url('berita') ?>">Berita |</a></li>
+                                <li><a href="<?= base_url('layanan') ?>">Layanan |</a></li>
+                                <li><a href="<?= base_url('kontak') ?>">Kontak</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="footer-social">
+                            <a href="<?= $site_info->instagram ?>" target="_blank"><i class="fab fa-instagram"></i></a>
+                            |
+                            <a href="<?= $site_info->facebook ?>" target="_blank"><i class=" fab fa-facebook"></i></a> |
+                            <a href="<?= $site_info->website ?>" target="_blank"><i class="fas fa-laptop-code"></i></a>
+                            |
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-               <div class="col-md-6">
-                  <div class="footer-social">
-                     <a href="<?= $site_info->instagram ?>" target="_blank"><i class="fab fa-instagram"></i></a> |
-                     <a href="<?= $site_info->facebook ?>" target="_blank"><i class=" fab fa-facebook"></i></a> |
-                     <a href="<?= $site_info->website ?>" target="_blank"><i class="fas fa-laptop-code"></i></a> |
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-   </div>
-   <!-- Footer End-->
+        </div>
+    </div>
+    <!-- Footer End-->
 </footer>
 
 <?php if ($this->session->flashdata('success')) : ?>
@@ -49,7 +51,7 @@
 <?php endif; ?>
 
 <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
-<script src="<?= base_url('assets/template/'); ?>jqueryUI/jquery-3.6.0.min.js"></script>
+<script src="<?= base_url('assets/admin/'); ?>dist/js/jquery-3.6.0.min.js"></script>
 <!-- JS here -->
 
 <!-- All JS Custom Plugins Link Here here -->
@@ -72,8 +74,8 @@
 <script src="<?= base_url('assets/templates/'); ?>/assets/js/jquery.magnific-popup.js"></script>
 <script>
 $('.img-lightbox').magnificPopup({
-   type: 'image'
-   // other options
+    type: 'image'
+    // other options
 });
 </script>
 

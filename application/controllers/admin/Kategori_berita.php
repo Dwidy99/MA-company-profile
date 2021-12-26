@@ -16,28 +16,28 @@ class Kategori_berita extends CI_Controller {
       $valid = $this->form_validation;
       $valid->set_rules('nama_kategori', 'Nama Kategori', 'required|is_unique[kategori_berita.nama_kategori]',
          array(
-            'required' => '%s harus diisi',
+            'required'  => '%s harus diisi',
             'is_unique' => '%s '. $this->input->post('nama_kategori',true) .' sudah ada gunakan nama lain'
          ));
          $valid->set_rules('urutan', 'Urutan', 'required|is_unique[kategori_berita.urutan]',
          [
-            'required' => '%s harus diisi',
+            'required'  => '%s harus diisi',
             'is_unique' => '%s '. $this->input->post('urutan',true) .' sudah ada gunakan urutan lain'
          ]);
       
       if ($valid->run() === FALSE) {
          $data = [
-            'title' => 'Kategori Berita ('. count($NewsKategories) .')',
-            'newsKategories'		=> $NewsKategories,
-            'isi' => 'admin/kategoriBerita/list'
+            'title'           => 'Kategori Berita ('. count($NewsKategories) .')',
+            'newsKategories'	=> $NewsKategories,
+            'isi'             => 'admin/kategoriBerita/list'
          ];
          $this->load->view('admin/layout/wrapper', $data, false);
       } else {
          $i = $this->input;
          $data = [
-            'nama_kategori' => $i->post('nama_kategori'),
-            'slug_kategori' => url_title($i->post('nama_kategori'), 'dash', TRUE),
-            'urutan' => $i->post('urutan')
+            'nama_kategori'   => $i->post('nama_kategori'),
+            'slug_kategori'   => url_title($i->post('nama_kategori'), 'dash', TRUE),
+            'urutan'          => $i->post('urutan')
          ];
          $this->KategoriBerita_model->tambah($data);
          $this->session->set_flashdata('success', 'Data telah ditambahkan');
@@ -51,7 +51,7 @@ class Kategori_berita extends CI_Controller {
       
       $i = $this->input;
       $nama_kategori = $i->post('nama_kategori',true);
-      $urutan = $i->post('urutan',true);
+      $urutan        = $i->post('urutan',true);
 
       if ($NewsKategory->nama_kategori !== $nama_kategori) {
          $is_newsKategory = '|is_unique[kategori_berita.nama_kategori]';
@@ -68,28 +68,28 @@ class Kategori_berita extends CI_Controller {
       $valid = $this->form_validation;
       $valid->set_rules('nama_kategori', 'Nama Kategori', 'required'. $is_newsKategory,
          array(
-            'required' => '%s harus diisi',
+            'required'  => '%s harus diisi',
             'is_unique' => '%s '. $nama_kategori .' sudah ada gunakan nama lain'
          ));
          $valid->set_rules('urutan', 'Urutan', 'required'. $is_urutan,
          [
-            'required' => '%s harus diisi',
+            'required'  => '%s harus diisi',
             'is_unique' => '%s '. $urutan .' sudah ada gunakan urutan lain'
          ]);
       
       if ($valid->run() === FALSE) {
          $data = [
-            'title' => 'Kategori Berita '. $NewsKategory->nama_kategori,
-            'newsKategory'		=> $NewsKategory,
-            'isi' => 'admin/kategoriBerita/edit'
+            'title'        => 'Kategori Berita '. $NewsKategory->nama_kategori,
+            'newsKategory'	=> $NewsKategory,
+            'isi'          => 'admin/kategoriBerita/edit'
          ];
          $this->load->view('admin/layout/wrapper', $data, false);
       } else {
          $data = [
             'id_kategori_berita' => $id_kategori_berita,
-            'nama_kategori' => $nama_kategori,
-            'slug_kategori' => url_title($i->post('nama_kategori'), 'dash', TRUE),
-            'urutan' => $urutan
+            'nama_kategori'      => $nama_kategori,
+            'slug_kategori'      => url_title($i->post('nama_kategori'), 'dash', TRUE),
+            'urutan'             => $urutan
          ];
          $this->KategoriBerita_model->edit($data);
          $this->session->set_flashdata('success', 'Data telah ditambahkan');

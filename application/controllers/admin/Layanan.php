@@ -16,7 +16,7 @@ class Layanan extends CI_Controller {
 
 		$data = [
 			'title'		=> 'Data Layanan ('. count($services) .')',
-			'services'		=> $services,
+			'services'	=> $services,
 			'isi'		=> 'admin/layanan/list'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
@@ -27,9 +27,9 @@ class Layanan extends CI_Controller {
 		$services 	= $this->Layanan_model->author_admin($id_user);
 		$user 		= $this->User_model->detail($id_user);
 
-		$data = array(	'title'			=> 'Penulis layanan: '.$user->nama.' ('.count($services).')',
-						'services'		=> $services,
-						'isi'			=> 'admin/layanan/list');
+		$data = array(	'title'		=> 'Penulis layanan: '.$user->nama.' ('.count($services).')',
+						'services'	=> $services,
+						'isi'		=> 'admin/layanan/list');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
@@ -45,15 +45,15 @@ class Layanan extends CI_Controller {
 		
 		if ($valid->run()) {
 			// Upload file
-			$config['upload_path']				 = './assets/uploads/layanan';
-			$config['allowed_types']		 	 = 'gif|jpg|png|jpeg';
-			$config['max_size']						= 5000;
-         $config['file_ext_tolower']			= true;
+			$config['upload_path']		= './assets/uploads/layanan';
+			$config['allowed_types']	= 'gif|jpg|png|jpeg';
+			$config['max_size']			= 5000;
+         $config['file_ext_tolower']	= true;
 			
 			$upload_image = $_FILES['gambar']['name'];
 			$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
-			$file_ext       = explode('.', $upload_image);
-			$file_ext       = strtolower(end($file_ext));
+			$file_ext     = explode('.', $upload_image);
+			$file_ext     = strtolower(end($file_ext));
 			
 			if (!in_array($file_ext, $allowed_ext)) {
 				$this->session->set_flashdata('danger', 'Tipe File Tidak Diizinkan!');
@@ -96,15 +96,15 @@ class Layanan extends CI_Controller {
 					
 					$i = $this->input;
 					$data = [
-						'id_user' 			  		 	=> $this->session->userdata('id_user'),
-						'judul_layanan'		 	=> $i->post('judul_layanan', true),
-						'slug_layanan' 		 	=> url_title($i->post('judul_layanan', true), 'dash', TRUE),
-						'isi_layanan'				 	=> $i->post('isi_layanan', true),
-						'gambar'							=> $data['gambar']['file_name'],
-						'keywords'					=> $i->post('keywords', true),
-						'harga'		 => $i->post('harga', true),
-						'status_layanan'			=> $i->post('status_layanan', true),
-						'tanggal_post'		 	  	=> date('Y-m-d H:i:s')
+						'id_user' 			=> $this->session->userdata('id_user'),
+						'judul_layanan'		=> $i->post('judul_layanan', true),
+						'slug_layanan' 		=> url_title($i->post('judul_layanan', true), 'dash', TRUE),
+						'isi_layanan'		=> $i->post('isi_layanan', true),
+						'gambar'			=> $data['gambar']['file_name'],
+						'keywords'			=> $i->post('keywords', true),
+						'harga'		 		=> $i->post('harga', true),
+						'status_layanan'	=> $i->post('status_layanan', true),
+						'tanggal_post'		=> date('Y-m-d H:i:s')
 					];
 					$this->Layanan_model->tambah($data);
 					$this->session->set_flashdata('success', 'Layanan Berhasil ditambahkan!');
@@ -112,14 +112,14 @@ class Layanan extends CI_Controller {
 			}
 		}
 		$data = [
-			'title'					=> 'Tambah Layanan',
-			'isi'						=> 'admin/layanan/tambah'
+			'title'	=> 'Tambah Layanan',
+			'isi'	=> 'admin/layanan/tambah'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
 
 	// Edit
-	public function edit($id_layanan = '')
+	public function edit($id_layanan = NULL)
 	{
 		$services = $this->Layanan_model->detail($id_layanan);
 		// validasi
@@ -133,15 +133,15 @@ class Layanan extends CI_Controller {
 			// Jika tidak ganti gambar
 			if (!empty($_FILES['gambar']['name'])) {
 				// Upload file
-				$config['upload_path']				 = './assets/uploads/layanan';
-				$config['allowed_types']		 	 = 'gif|jpg|png|jpeg';
-				$config['max_size']						= 5000;
-            $config['file_ext_tolower']			= true;
+				$config['upload_path']		= './assets/uploads/layanan';
+				$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
+				$config['max_size']			= 5000;
+            $config['file_ext_tolower']		= true;
 				
 				$upload_image = $_FILES['gambar']['name'];
 				$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
-				$file_ext       = explode('.', $upload_image);
-				$file_ext       = strtolower(end($file_ext));
+				$file_ext     = explode('.', $upload_image);
+				$file_ext     = strtolower(end($file_ext));
 	
 				if (!in_array($file_ext, $allowed_ext)) {
 					$this->session->set_flashdata('danger', 'Tipe File Tidak Diizinkan!');
@@ -198,9 +198,9 @@ class Layanan extends CI_Controller {
 			}
 		}
 		$data = [
-			'title'					=> 'Edit Layanan',
-			'services'				=> $services,
-			'isi'						=> 'admin/layanan/edit'
+			'title'		=> 'Edit Layanan',
+			'services'	=> $services,
+			'isi'		=> 'admin/layanan/edit'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}

@@ -14,9 +14,9 @@ class Kontak extends CI_Controller {
    {
       $configure = $this->Konfigurasi_model->listing();
 
-      $i = $this->input;
-		$name = $i->post('name', true);
-		$email = $i->post('email', true);
+      $i 		= $this->input;
+		$name 	= $i->post('name', true);
+		$email 	= $i->post('email', true);
 		$message = $i->post('message', true);
 		$subject = $i->post('subject', true);
 		// validasi
@@ -27,19 +27,19 @@ class Kontak extends CI_Controller {
 		$valid->set_rules('message', 'Message', 'required|min_length[6]');
 
       if ($valid->run() == FALSE) {
-         $data = array('title' => 'Kontak - '.$configure->namaweb.' - '.$configure->tagline,
-                              'keywords' => 'Kontak - '.$configure->namaweb.' - '.$configure->tagline,
-                              'deskripsi' => 'Kontak - '.$configure->namaweb.' - '.$configure->tagline,
-                              'configure' => $configure,
-                              'isi' => 'kontak/list');
+         $data = array('title' 		=> 'Kontak - '.$configure->namaweb.' - '.$configure->tagline,
+                        'keywords' 	=> 'Kontak - '.$configure->namaweb.' - '.$configure->tagline,
+                        'deskripsi' => 'Kontak - '.$configure->namaweb.' - '.$configure->tagline,
+                        'configure' => $configure,
+                        'isi' 		=> 'kontak/list');
          $this->load->view('layout/wrapper', $data, FALSE);
       } else {
          $data = [
-				'nama' 			=> $name,
-				'email' 		     => $email,
-				'pesan' 		   => $message,
-				'subject' 		=> $subject,
-				'tanggal' 	   => date('Y-m-d H:i:s'),
+				'nama' 		=> $name,
+				'email' 		=> $email,
+				'pesan' 		=> $message,
+				'subject'	=> $subject,
+				'tanggal' 	=> date('Y-m-d H:i:s'),
 			];
          $this->db->insert('kontak', $data);
          

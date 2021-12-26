@@ -26,32 +26,32 @@ class Berita extends CI_Controller {
 	
 	// Kategori berita
 	public function kategori($id_kategori)	{
-		$news 	= $this->Berita_model->kategori_admin($id_kategori);
+		$news 		= $this->Berita_model->kategori_admin($id_kategori);
 		$kategori 	= $this->KategoriBerita_model->detail($id_kategori);
 
-		$data = array(	'title'			=> 'Kategori berita: '.$kategori->nama_kategori.' ('.count($news).')',
-						'news'		=> $news,
-						'isi'			=> 'admin/berita/list');
+		$data = array(	'title'	=> 'Kategori berita: '.$kategori->nama_kategori.' ('.count($news).')',
+						'news'	=> $news,
+						'isi'	=> 'admin/berita/list');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
 	// Author berita
 	public function author($id_user)	{
 		$news 	= $this->Berita_model->author_admin($id_user);
-		$user 		= $this->User_model->detail($id_user);
+		$user 	= $this->User_model->detail($id_user);
 
-		$data = array(	'title'			=> 'Penulis berita: '.$user->nama.' ('.count($news).')',
-						'news'		=> $news,
-						'isi'			=> 'admin/berita/list');
+		$data = array(	'title'	=> 'Penulis berita: '.$user->nama.' ('.count($news).')',
+						'news'	=> $news,
+						'isi'	=> 'admin/berita/list');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
 	// Jenis berita
 	public function jenis_berita($jenis_berita)	{
 		$news = $this->Berita_model->jenis_admin($jenis_berita);
-		$data = array(	'title'			=> 'Jenis berita: '.$jenis_berita.' ('.count($news).')',
-						'news'		=> $news,
-						'isi'			=> 'admin/berita/list');
+		$data = array(	'title'	=> 'Jenis berita: '.$jenis_berita.' ('.count($news).')',
+						'news'	=> $news,
+						'isi'	=> 'admin/berita/list');
 		$this->load->view('admin/layout/wrapper', $data, FALSE);		
 	}
 
@@ -85,16 +85,16 @@ class Berita extends CI_Controller {
 		
 		if ($valid->run()) {
 			// Upload file
-			$config['upload_path']				 = './assets/uploads/berita';
-			$config['allowed_types']		 	 = 'gif|jpg|png|jpeg';
-			$config['max_size']						= 5000;
-			$config['file_ext_tolower']			= true;
+			$config['upload_path']			= './assets/uploads/berita';
+			$config['allowed_types']		= 'gif|jpg|png|jpeg';
+			$config['max_size']				= 5000;
+			$config['file_ext_tolower']		= true;
 			
 			// Cek File Gambar
 			$upload_image = $_FILES['gambar']['name'];
 			$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
-			$file_ext       = explode('.', $upload_image);
-			$file_ext       = strtolower(end($file_ext));
+			$file_ext     = explode('.', $upload_image);
+			$file_ext     = strtolower(end($file_ext));
 			
 			if (!in_array($file_ext, $allowed_ext)) {
 				$this->session->set_flashdata('danger', 'Tipe File Tidak Diizinkan!');
@@ -162,8 +162,10 @@ class Berita extends CI_Controller {
 	}
 
 	// Edit
-	public function edit($id_berita = '')
+	public function edit($id_berita = NULL)
 	{
+		if ($id_berita == NULL) {redirect('oops','refresh');}
+
 		$news = $this->Berita_model->detail($id_berita);
 		$categories = $this->KategoriBerita_model->listing();
 		// validasi
@@ -179,15 +181,15 @@ class Berita extends CI_Controller {
 			// Jika tidak ganti gambar
 			if (!empty($_FILES['gambar']['name'])) {
 				// Upload file
-				$config['upload_path']				 = './assets/uploads/berita';
-				$config['allowed_types']		 	 = 'gif|jpg|png|jpeg';
-				$config['max_size']						= 5000;
-				$config['file_ext_tolower']			= true;
+				$config['upload_path']			= './assets/uploads/berita';
+				$config['allowed_types']	 	= 'gif|jpg|png|jpeg';
+				$config['max_size']				= 5000;
+				$config['file_ext_tolower']		= true;
 				
 				$upload_image = $_FILES['gambar']['name'];
 				$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
-				$file_ext       = explode('.', $upload_image);
-				$file_ext       = strtolower(end($file_ext));
+				$file_ext     = explode('.', $upload_image);
+				$file_ext     = strtolower(end($file_ext));
 	
 				if (!in_array($file_ext, $allowed_ext)) {
 					$this->session->set_flashdata('danger', 'Tipe File Tidak Diizinkan!');
@@ -244,10 +246,10 @@ class Berita extends CI_Controller {
 			}
 		}
 		$data = [
-			'title'					=> 'Edit Berita',
-			'categories'		=> $categories,
-			'news'				=> $news,
-			'isi'						=> 'admin/berita/edit'
+			'title'			=> 'Edit Berita',
+			'categories'	=> $categories,
+			'news'			=> $news,
+			'isi'			=> 'admin/berita/edit'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
 	}
