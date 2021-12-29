@@ -6,13 +6,13 @@ class Dashboard_model extends CI_Model
 	// Total kunjungan
 	public function kunjungan()
 	{
-		$this->db->select('hari, COUNT(*) AS total');
-		$this->db->from('kunjungan');
-		$this->db->group_by('hari');
-		$this->db->order_by('hari', 'desc');
-		$this->db->limit(14);
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('hari, COUNT(*) AS total')
+						->from('kunjungan')
+						->group_by('hari')
+						->order_by('hari', 'desc')
+						->limit(14)
+						->get()
+						->result();
 	}
 }
 

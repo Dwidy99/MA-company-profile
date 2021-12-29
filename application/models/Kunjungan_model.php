@@ -12,23 +12,21 @@ class Kunjungan_model extends CI_Model {
 	// Listing
 	public function listing()
 	{
-		$this->db->select('*');
-		$this->db->from('kunjungan');
-		$this->db->order_by('id_kunjungan', 'DESC');
-		$this->db->limit(8);
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('*')
+						->from('kunjungan')
+						->order_by('id_kunjungan', 'DESC')
+						->limit(8)
+						->get()->result();
 	}
 	
 	// Listing
 	public function pengunjung_detail($ip_address, $hari)
 	{
-		$this->db->select('*');
-		$this->db->from('kunjungan');
-		$this->db->where(array('ip_address' => $ip_address, 'hari' => $hari));
-		$this->db->order_by('id_kunjungan', 'DESC');
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->select('*')
+						->from('kunjungan')
+						->where(array('ip_address' => $ip_address, 'hari' => $hari))
+						->order_by('id_kunjungan', 'DESC')
+						->get()->row();
 	}
 
 	// Tambah
@@ -40,8 +38,8 @@ class Kunjungan_model extends CI_Model {
 	// Edit
 	public function edit($data_kunjungan)
 	{
-		$this->db->where('id_kunjungan',$data_kunjungan['id_kunjungan']);
-		$this->db->update('kunjungan', $data_kunjungan);
+		$this->db->where('id_kunjungan',$data_kunjungan['id_kunjungan'])
+				 ->update('kunjungan', $data_kunjungan);
 	}
 
 	// Tambah
@@ -54,33 +52,30 @@ class Kunjungan_model extends CI_Model {
 	public function harian()
 	{
 		$sekarang = date('Y-m-d');
-		$this->db->select('*');
-		$this->db->from('kunjungan');
-		$this->db->where('hari',$sekarang);
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('*')
+						->from('kunjungan')
+						->where('hari',$sekarang)
+						->get()->result();
 	}
 
 	// Laporan bulanan
 	public function bulanan()
 	{
 		$sekarang = date('Y-m');
-		$this->db->select('*');
-		$this->db->from('kunjungan');
-		$this->db->where('SUBSTR(hari,1,7)',$sekarang);
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('*')
+						->from('kunjungan')
+						->where('SUBSTR(hari,1,7)',$sekarang)
+						->get()->result();
 	}
 
 	// Laporan bulanan
 	public function tahunan()
 	{
 		$sekarang = date('Y');
-		$this->db->select('*');
-		$this->db->from('kunjungan');
-		$this->db->where('SUBSTR(hari,1,4)',$sekarang);
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('*')
+						->from('kunjungan')
+						->where('SUBSTR(hari,1,4)',$sekarang)
+						->get()->result();
 	}
 	
 

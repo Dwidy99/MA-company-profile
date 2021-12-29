@@ -6,13 +6,12 @@ class Galeri_model extends CI_Model {
 	// Listing Galeri
 	public function listing()
 	{
-		$this->db->select("galeri.*,
-																users.nama");
-		$this->db->from('galeri');
-		$this->db->join('users', 'users.id_user = galeri.id_user', 'LEFT');
-		$this->db->order_by('id_galeri', 'DESC');
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select("galeri.*,
+									users.nama")
+						->from('galeri')
+						->join('users', 'users.id_user = galeri.id_user', 'LEFT')
+						->order_by('id_galeri', 'DESC')
+						->get()->result();
 	} 
 
 	// Tambah Data
@@ -51,65 +50,59 @@ class Galeri_model extends CI_Model {
 	// Listing Galeri untuk slider
 	public function slider()
 	{
-		$this->db->select('galeri.*, 
-																users.nama');
-		$this->db->from('galeri');
-		$this->db->join('users', 'users.id_user = galeri.id_user', 'LEFT');
-		$this->db->where('posisi_galeri', 'homepage');
-		$this->db->order_by('id_galeri', 'DESC');
-		$this->db->limit(5);
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('galeri.*, 
+									users.nama')
+						->from('galeri')
+						->join('users', 'users.id_user = galeri.id_user', 'LEFT')
+						->where('posisi_galeri', 'homepage')
+						->order_by('id_galeri', 'DESC')
+						->limit(5)
+						->get()->result();
 	} 
 
 	// Listing Galeri dengan mengubah tanggal
 	public function galeriDATE($limit, $start)
 	{
-		$this->db->select("*, 
-											MONTHNAME(galeri.tanggal_post) AS bulan, 
-											DATE_FORMAT(galeri.tanggal_post, '%d') AS tanggalAngka");
-		$this->db->from('galeri');
-		$this->db->where('posisi_galeri', 'galeri');
-		$this->db->order_by('id_galeri', 'DESC');
-		$this->db->limit($limit, $start);
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select("*, 
+							MONTHNAME(galeri.tanggal_post) AS bulan, 
+							DATE_FORMAT(galeri.tanggal_post, '%d') AS tanggalAngka")
+						->from('galeri')
+						->where('posisi_galeri', 'galeri')
+						->order_by('id_galeri', 'DESC')
+						->limit($limit, $start)
+						->get()->result();
 	} 
 	
 	public function galeri()
 	{
-		$this->db->select('galeri.*, 
-																users.nama');
-		$this->db->from('galeri');
-		$this->db->join('users', 'users.id_user = galeri.id_user', 'LEFT');
-		$this->db->where('posisi_galeri', 'galeri');
-		$this->db->order_by('id_galeri', 'DESC');
-		$this->db->limit(10);
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('galeri.*, 
+									users.nama')
+						->from('galeri')
+						->join('users', 'users.id_user = galeri.id_user', 'LEFT')
+						->where('posisi_galeri', 'galeri')
+						->order_by('id_galeri', 'DESC')
+						->limit(10)
+						->get()->result();
 	} 
 
 	// Detail Galeri
 	public function detail($id_galeri)
 	{
-		$this->db->select('*');
-		$this->db->from('galeri');
-		$this->db->where('id_galeri', $id_galeri);
-		$this->db->order_by('id_galeri');
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->select('*')
+						->from('galeri')
+						->where('id_galeri', $id_galeri)
+						->order_by('id_galeri')
+						->get()->row();
 	}
 
 	// Listing main page
 	public function total_galeri()
 	{
-		$this->db->select('galeri.*');
-		$this->db->from('galeri');
-		$this->db->where(['posisi_galeri' => 'galeri']);	
-		
-		$this->db->order_by('id_galeri', 'DESC');
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('galeri.*')
+						->from('galeri')
+						->where(['posisi_galeri' => 'galeri'])
+						->order_by('id_galeri', 'DESC')
+						->get()->result();
 	}
 	// End Home Main Page
 }

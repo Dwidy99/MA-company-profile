@@ -6,22 +6,20 @@ class Kontak_model extends CI_Model {
 	// Listing Kontak
 	public function listing()
 	{
-		$this->db->select('*');
-		$this->db->from('kontak');
-		$this->db->order_by('id_kontak', 'DESC');
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('*')
+						->from('kontak')
+						->order_by('id_kontak', 'DESC')
+						->get()->result();
 	} 
 
 	// Detail Kontak
 	public function detail($id_kontak)
 	{
-		$this->db->select('*');
-		$this->db->from('kontak');
-		$this->db->where('id_kontak', $id_kontak);
-		$this->db->order_by('id_kontak');
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->select('*')
+						->from('kontak')
+						->where('id_kontak', $id_kontak)
+						->order_by('id_kontak')
+						->get()->row();
 	}
 
 	// Tambah Data
@@ -48,20 +46,19 @@ class Kontak_model extends CI_Model {
 	// Delete
 	public function hapus($id_kontak)
 	{
-		$this->db->where('id_kontak', $id_kontak);
-		return $this->db->delete('kontak');
+		return $this->db->where('id_kontak', $id_kontak)
+						->delete('kontak');
 	}
 
 	// Detail Login
 	public function login($username, $password)
 	{
-		$this->db->select('*');
-		$this->db->from('kontak');
-		$this->db->where('username', $username);
-		$this->db->where('password', $password);
-		$this->db->order_by('id_kontak');
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->select('*')
+						->from('kontak')
+						->where('username', $username)
+						->where('password', $password)
+						->order_by('id_kontak')
+						->get()->row();
 	}
 }
 

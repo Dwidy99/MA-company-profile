@@ -32,10 +32,10 @@ if ($this->session->flashdata('success')) : ?>
          <th>Gambar</th>
          <th>Judul</th>
          <th>Kategori</th>
-         <th width="10%">Jenis - Status</th>
+         <th width="15%">Jenis - Status</th>
          <th>Penulis</th>
          <th>Tanggal</th>
-         <th width="10%">Aksi</th>
+         <th width="20%">Aksi</th>
       </tr>
    </thead>
    <tbody>

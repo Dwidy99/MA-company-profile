@@ -6,14 +6,16 @@ class Berita_model extends CI_Model {
 	// Listing Berita
 	public function listing()
 	{
-		$this->db->select('berita.*, kategori_berita.nama_kategori, kategori_berita.slug_kategori, users.nama');
-		$this->db->from('berita');
 		// Join dg 2 tabel
-		$this->db->join('kategori_berita', 'kategori_berita.id_kategori_berita = berita.id_kategori_berita', 'left');
-		$this->db->join('users', 'users.id_user = berita.id_user', 'left');
-		$this->db->order_by('id_berita', 'DESC');
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('berita.*, 
+									kategori_berita.nama_kategori, kategori_berita.slug_kategori, 
+									users.nama')
+						->from('berita')
+						->join('kategori_berita', 'kategori_berita.id_kategori_berita = berita.id_kategori_berita', 'left')
+						->join('users', 'users.id_user = berita.id_user', 'left')
+						->order_by('id_berita', 'DESC')
+						->get()
+						->result();
 	} 
 
 	// Listing author admin

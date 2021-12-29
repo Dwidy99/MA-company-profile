@@ -6,22 +6,20 @@ class User_model extends CI_Model {
 	// Listing User
 	public function listing()
 	{
-		$this->db->select('*');
-		$this->db->from('users');
-		$this->db->order_by('id_user', 'ASC');
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('*')
+						->from('users')
+						->order_by('id_user', 'ASC')
+						->get()->result();
 	} 
 
 	// Detail User
 	public function detail($id_user)
 	{
-		$this->db->select('*');
-		$this->db->from('users');
-		$this->db->where('id_user', $id_user);
-		$this->db->order_by('id_user');
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->select('*')
+						->from('users')
+						->where('id_user', $id_user)
+						->order_by('id_user')
+						->get()->row();
 	}
 
 	// Tambah Data
@@ -48,20 +46,19 @@ class User_model extends CI_Model {
 	// Delete
 	public function hapus($id_user)
 	{
-		$this->db->where('id_user', $id_user);
-		return $this->db->delete('users');
+		return $this->db->where('id_user', $id_user)
+						->delete('users');
 	}
 
 	// Detail Login
 	public function login($username, $password)
 	{
-		$this->db->select('*');
-		$this->db->from('users');
-		$this->db->where('username', $username);
-		$this->db->where('password', $password);
-		$this->db->order_by('id_user');
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->select('*')
+						->from('users')
+						->where('username', $username)
+						->where('password', $password)
+						->order_by('id_user')
+						->get()->row();
 	}
 }
 

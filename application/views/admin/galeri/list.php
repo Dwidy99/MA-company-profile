@@ -26,7 +26,7 @@ if ($this->session->flashdata('success')) : ?>
          <th>Website</th>
          <th>Penulis</th>
          <th>Tanggal</th>
-         <th width="10%">Aksi</th>
+         <th width="15%">Aksi</th>
       </tr>
    </thead>
    <tbody>

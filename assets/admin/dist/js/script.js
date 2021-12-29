@@ -7,6 +7,7 @@ $(document).ready(function () {
 			text: flashdata,
 			icon: "success",
 			confirmButtonText: "Ok",
+			timer: 2500
 		});
 	}
 
@@ -18,6 +19,7 @@ $(document).ready(function () {
 			text: flashdataDanger,
 			icon: "warning",
 			confirmButtonText: "Ok",
+			timer: 2500
 		});
 	}
 

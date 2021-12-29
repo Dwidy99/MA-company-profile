@@ -6,33 +6,30 @@ class KategoriBerita_model extends CI_Model {
   // Listing kategori_berita
 	public function listing()
 	{
-		$this->db->select('*');
-		$this->db->from('kategori_berita');
-		$this->db->order_by('urutan', 'ASC');
-		$query = $this->db->get();
-		return $query->result();
+		return $this->db->select('*')
+										->from('kategori_berita')
+										->order_by('urutan', 'ASC')
+										->get()->result();
 	} 
 
 	// Detail kategori_berita
 	public function detail($id_kategori_berita)
 	{
-		$this->db->select('*');
-		$this->db->from('kategori_berita');
-		$this->db->where('id_kategori_berita', $id_kategori_berita);
-		$this->db->order_by('id_kategori_berita');
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->select('*')
+										->from('kategori_berita')
+										->where('id_kategori_berita', $id_kategori_berita)
+										->order_by('id_kategori_berita')
+										->get()->row();
 	}
 
 	// Detail Berita
 	public function read($slug_kategori)
 	{
-		$this->db->select('*');
-		$this->db->from('kategori_berita');
-		$this->db->where('slug_kategori', $slug_kategori);
-		$this->db->order_by('id_kategori_berita');
-		$query = $this->db->get();
-		return $query->row();
+		return $this->db->select('*')
+										->from('kategori_berita')
+										->where('slug_kategori', $slug_kategori)
+										->order_by('id_kategori_berita')
+										->get()->row();
 	}
 
 	// Tambah Data
@@ -44,15 +41,15 @@ class KategoriBerita_model extends CI_Model {
 	// Edit Data
 	public function edit($data)
 	{
-		$this->db->where('id_kategori_berita', $data['id_kategori_berita']);
-		$this->db->update('kategori_berita', $data);
+		$this->db->where('id_kategori_berita', $data['id_kategori_berita'])
+						 ->update('kategori_berita', $data);
 	}
 
 	// Delete
 	public function hapus($data)
 	{
-		$this->db->where('id_kategori_berita', $data['id_kategori_berita']);
-		return $this->db->delete('kategori_berita');
+		return $this->db->where('id_kategori_berita', $data['id_kategori_berita'])
+										->delete('kategori_berita');
 	}
 
 }
