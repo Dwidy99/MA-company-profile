@@ -18,3 +18,6 @@ Features
 - _Layanan CRUD_
 - _Berita CRUD_
 - _Message Inbox_
+
+Username: Lizard
+PASSWORD: qwerty
