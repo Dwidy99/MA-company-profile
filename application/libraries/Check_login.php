@@ -12,23 +12,28 @@ class check_login
 
    public function check()
    {
-      if ($this->CI->session->userdata('username') == "" && $this->CI->session->userdata('akses_level') == "") {
+      if ($this->CI->session->userdata('usernameAdmin') == "" && $this->CI->session->userdata('akses_levelAdmin') == "") {
          $this->CI->session->set_flashdata('danger','Silahkan login terlebih dahulu!');
          redirect(base_url('login'),'refresh');
       }
    }
 
+   public function login($username='', $password)
+   {
+      
+   }
+
    public function logout()
    {
-      $this->CI->session->unset_userdata('id_user');
-      $this->CI->session->unset_userdata('username');
-      $this->CI->session->unset_userdata('nama');
-      $this->CI->session->unset_userdata('akses_level');
+      $this->CI->session->unset_userdata('id_userAdmin');
+      $this->CI->session->unset_userdata('usernameAdmin');
+      $this->CI->session->unset_userdata('namaAdmin');
+      $this->CI->session->unset_userdata('akses_levelAdmin');
       
       $this->CI->session->set_flashdata('success', 'Anda berhasil logout');
       redirect('login');
       // Biar yakin
-      $_SESSION = array('id_user' => '', 'username' => '', 'nama' => '', 'akses_level' => '');
+      $_SESSION = array('id_userAdmin' => '', 'usernameAdmin' => '', 'namaAdmin' => '', 'akses_levelAdmin' => '');
       session_destroy();
    }
 }

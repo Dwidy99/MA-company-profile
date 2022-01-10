@@ -20,4 +20,4 @@ Features
 - _Message Inbox_
 
 Username: Lizard
-PASSWORD: qwerty
+Password: qwerty

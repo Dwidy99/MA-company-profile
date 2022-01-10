@@ -1,6 +1,6 @@
 <?php 
 // Ambil data User berdasarkan datanya
-$id_user = $this->session->userdata('id_user');
+$id_user = $this->session->userdata('id_userAdmin');
 $user_aktif = $this->User_model->detail($id_user);
 ?>
 <!-- Navbar -->
