@@ -10,7 +10,7 @@ class check_login
       $this->CI =& get_instance();
    }
 
-   public function check()
+   public function check($pengalihan)
    {
       if ($this->CI->session->userdata('usernameAdmin') == "" && $this->CI->session->userdata('akses_levelAdmin') == "") {
          $this->CI->session->set_flashdata('danger','Silahkan login terlebih dahulu!');

@@ -103,6 +103,7 @@ $menu_layanan = $this->Konfigurasi_model->menu_layanan();
                                     <?php endforeach; ?>
                                  </ul>
                               </li>
+                              <li><a href="<?= base_url('download'); ?>">Download/Laporan</a></li>
                               <li><a href="<?= base_url('kontak'); ?>">Kontak</a></li>
                            </ul>
                         </nav>

@@ -47,6 +47,8 @@ class Kategori_berita extends CI_Controller {
 
    public function edit($id_kategori_berita)
    {
+      if ($id_kategori_berita == NULL) {redirect('oops','refresh');}
+
       $NewsKategory = $this->KategoriBerita_model->detail($id_kategori_berita);
       
       $i = $this->input;
@@ -97,19 +99,23 @@ class Kategori_berita extends CI_Controller {
       }
    }
 
-   public function hapus($id_kategori_berita)
-   {
-      // proses delete
-      $this->check_login->check();
+   // public function hapus($id_kategori_berita)
+   // {
+   //    // Proteksi proses delete harus login
+   //    // Tambahkan proteksi halaman
+   //    $url_pengalihan = str_replace('index.php/', '', current_url());
+   //    $pengalihan    = $this->session->set_userdata('pengalihan',$url_pengalihan);
+   //    // proses delete
+   //    $this->check_login->check($pengalihan);
       
-      $id_kategori = $this->KategoriBerita_model->detail($id_kategori_berita);
-      $data = array(
-         'id_kategori_berita' => $id_kategori->id_kategori_berita,
-      );
-      $this->KategoriBerita_model->hapus($data);
-      $this->session->set_flashdata('success', 'Data telah dihapus');
-      redirect(base_url('admin/kategori_berita'), 'refresh');
-   }
+   //    $id_kategori = $this->KategoriBerita_model->detail($id_kategori_berita);
+   //    $data = array(
+   //       'id_kategori_berita' => $id_kategori->id_kategori_berita,
+   //    );
+   //    $this->KategoriBerita_model->hapus($data);
+   //    $this->session->set_flashdata('success', 'Data telah dihapus');
+   //    redirect(base_url('admin/kategori_berita'), 'refresh');
+   // }
 
 }
 ?>

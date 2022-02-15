@@ -13,20 +13,20 @@ class Kunjungan_model extends CI_Model {
 	public function listing()
 	{
 		return $this->db->select('*')
-						->from('kunjungan')
-						->order_by('id_kunjungan', 'DESC')
-						->limit(8)
-						->get()->result();
+		->from('kunjungan')
+		->order_by('id_kunjungan', 'DESC')
+		->limit(8)
+		->get()->result();
 	}
 	
 	// Listing
 	public function pengunjung_detail($ip_address, $hari)
 	{
 		return $this->db->select('*')
-						->from('kunjungan')
-						->where(array('ip_address' => $ip_address, 'hari' => $hari))
-						->order_by('id_kunjungan', 'DESC')
-						->get()->row();
+		->from('kunjungan')
+		->where(array('ip_address' => $ip_address, 'hari' => $hari))
+		->order_by('id_kunjungan', 'DESC')
+		->get()->row();
 	}
 
 	// Tambah
@@ -39,7 +39,7 @@ class Kunjungan_model extends CI_Model {
 	public function edit($data_kunjungan)
 	{
 		$this->db->where('id_kunjungan',$data_kunjungan['id_kunjungan'])
-				 ->update('kunjungan', $data_kunjungan);
+		->update('kunjungan', $data_kunjungan);
 	}
 
 	// Tambah
@@ -53,9 +53,9 @@ class Kunjungan_model extends CI_Model {
 	{
 		$sekarang = date('Y-m-d');
 		return $this->db->select('*')
-						->from('kunjungan')
-						->where('hari',$sekarang)
-						->get()->result();
+		->from('kunjungan')
+		->where('hari',$sekarang)
+		->get()->result();
 	}
 
 	// Laporan bulanan
@@ -63,9 +63,9 @@ class Kunjungan_model extends CI_Model {
 	{
 		$sekarang = date('Y-m');
 		return $this->db->select('*')
-						->from('kunjungan')
-						->where('SUBSTR(hari,1,7)',$sekarang)
-						->get()->result();
+		->from('kunjungan')
+		->where('SUBSTR(hari,1,7)',$sekarang)
+		->get()->result();
 	}
 
 	// Laporan bulanan
@@ -73,9 +73,9 @@ class Kunjungan_model extends CI_Model {
 	{
 		$sekarang = date('Y');
 		return $this->db->select('*')
-						->from('kunjungan')
-						->where('SUBSTR(hari,1,4)',$sekarang)
-						->get()->result();
+		->from('kunjungan')
+		->where('SUBSTR(hari,1,4)',$sekarang)
+		->get()->result();
 	}
 	
 

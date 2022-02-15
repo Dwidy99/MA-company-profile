@@ -81,9 +81,9 @@ class Galeri extends CI_Controller {
 			if ( !$this->upload->do_upload('gambar'))
 			{
 				// $this->upload->display_errors();
-            $this->session->set_flashdata('danger', 'Tipe File Dicurigai. Ganti atau Edit Gambar!');
-            redirect('admin/galeri/tambah/','refresh');
-				}
+				$this->session->set_flashdata('danger', 'Tipe File Dicurigai. Ganti atau Edit Gambar!');
+				redirect('admin/galeri/tambah/','refresh');
+			}
 				else
 				{
 					// Proses manipulasi gambar
@@ -104,7 +104,7 @@ class Galeri extends CI_Controller {
 					
 					$i 		= $this->input;
 					$data 	= [
-						'id_user'		 	=> $this->session->userdata('id_user'),
+						'id_user'		 	=> $this->session->userdata('id_userAdmin'),
 						'judul_galeri'		=> $i->post('judul_galeri', true),
 						'isi_galeri'	 	=> $i->post('isi_galeri', true),
 						'gambar'			=> $data['gambar']['file_name'],
@@ -142,7 +142,7 @@ class Galeri extends CI_Controller {
 				$config['upload_path']		= './assets/uploads/galeri';
 				$config['allowed_types'] 	= 'gif|jpg|png|jpeg';
 				$config['max_size']			= 5000;
-            $config['file_ext_tolower']		= true;
+            	$config['file_ext_tolower']		= true;
 				
 				$upload_image = $_FILES['gambar']['name'];
 				$allowed_ext  = array('jpg', 'png', 'gif', 'jpeg');
@@ -215,7 +215,7 @@ class Galeri extends CI_Controller {
 	// Delete
 	public function hapus($id_galeri = NULL)
 	{
-		if ($id_galeri == NUL) {redirect('oop','refresh');}
+		if ($id_galeri == NULL) {redirect('oops','refresh');}
 		// Proteksi delete
 		$this->check_login->check();
 

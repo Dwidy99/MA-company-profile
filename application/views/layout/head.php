@@ -21,6 +21,10 @@ $site_info = $this->Konfigurasi_model->listing();
    <!-- Author -->
    <meta name="author" content="<?= $site_info->namaweb; ?>" />
 
+   <!-- DataTables -->
+   <link rel="stylesheet"
+      href="<?= base_url('assets/admin/'); ?>plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+
    <!-- CSS here -->
    <link rel="stylesheet" href="<?= base_url('assets/templates/') ?>assets/css/bootstrap.min.css">
    <link rel="stylesheet" href="<?= base_url('assets/templates/') ?>assets/css/owl.carousel.min.css">

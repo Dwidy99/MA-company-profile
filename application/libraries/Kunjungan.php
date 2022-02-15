@@ -7,8 +7,8 @@ class Kunjungan
 
 	public function __construct()
 	{
-        $this->CI =& get_instance();
-        $this->CI->load->model('Kunjungan_model');
+		$this->CI =& get_instance();
+		$this->CI->load->model('Kunjungan_model');
 	}
 
 	// Kunjungan
@@ -22,19 +22,22 @@ class Kunjungan
 			$ip_address = $this->CI->input->ip_address();
 			$hari = date("Y-m-d");
 			$kunjungan = $this->CI->db->get_where('kunjungan', ['ip_address' => $ip_address, 'hari' => $hari])->row();
+
 			// Cek Jika Kunjungan Sudah Ada di hari yang sama 
 			if($kunjungan) {
 				// var_dump($kunjungan);die;
-				$data_kunjungan = array(	'alamat'			=> $alamat_kunjungan,
-																	'id_kunjungan'	=> $kunjungan->id_kunjungan,
-																	'hits'				=> $kunjungan->hits+1);
+				$data_kunjungan = array(	
+					'alamat'		=> $alamat_kunjungan,
+					'id_kunjungan'	=> $kunjungan->id_kunjungan,
+					'hits'			=> $kunjungan->hits+1);
 				$this->CI->Kunjungan_model->edit($data_kunjungan);
 			}else{
-				$data_kunjungan = array(	'alamat'			 => $alamat_kunjungan,
-																	'ip_address'	=> $ip_address,
-																	'hits'				 => 1,
-																	'hari'				 => date('Y-m-d'),
-																	'waktu'			  => date('Y-m-d H:i:s'));
+				$data_kunjungan = array(	
+					'alamat'		=> $alamat_kunjungan,
+					'ip_address'	=> $ip_address,
+					'hits'			=> 1,
+					'hari'			=> date('Y-m-d'),
+					'waktu'			=> date('Y-m-d H:i:s'));
 				$this->CI->Kunjungan_model->tambah($data_kunjungan);
 			}
 		}

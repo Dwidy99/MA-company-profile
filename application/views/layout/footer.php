@@ -100,6 +100,19 @@ $('.img-lightbox').magnificPopup({
 <script src="<?= base_url('assets/templates/'); ?>/assets/js/plugins.js"></script>
 <script src="<?= base_url('assets/templates/'); ?>/assets/js/main.js"></script>
 <script src="<?= base_url('assets/admin/plugins/sweetalert2/sweetalert2.all.min.js'); ?>"></script>
+
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?= base_url('assets/admin/') ?>plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- My Script -->
+<script src="<?= base_url('assets/admin/') ?>dist/js/script.js"></script>
+
 <script src="<?= base_url('assets/admin/dist/js/script.js') ?>"></script>
 </body>
 

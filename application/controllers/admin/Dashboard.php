@@ -22,7 +22,6 @@ class Dashboard extends CI_Controller {
       $services   = $this->Layanan_model->listing();
 
       $kunjungan           = $this->Dashboard_model->kunjungan();
-      $kunjunganSeminggu   = $this->Kunjungan_model->listing();
 
       $data = array( 'title'              => 'Halaman Dashboard Administrator',
                      'news'               => $news,
@@ -30,7 +29,6 @@ class Dashboard extends CI_Controller {
                      'users'              => $users,
                      'services'           => $services,
                      'kunjungan'          => $kunjungan,
-                     'kunjunganSeminggu'  => $kunjunganSeminggu,
                      'isi'                => 'admin/dashboard/list');
       $this->load->view('admin/layout/wrapper', $data, FALSE);
    }
