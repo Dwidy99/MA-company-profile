@@ -137,7 +137,7 @@ class Berita extends CI_Controller {
 					
 					$i = $this->input;
 					$data = [
-						'id_user' 			  		 		=> $this->session->userdata('id_user'),
+						'id_user' 			  		 		=> $this->session->userdata('id_userAdmin'),
 						'id_kategori_berita' 	  => $i->post('id_kategori_berita', true),
 						'slug_berita' 		 				=> url_title($i->post('judul_berita', true), 'dash', TRUE),
 						'judul_berita'		 				=> $i->post('judul_berita', true),
@@ -258,7 +258,10 @@ class Berita extends CI_Controller {
 	public function hapus($id_berita)
 	{
 		// Proteksi delete
-		$this->check_login->check();
+		$url_pengalihan = str_replace('index.php/', '', current_url());
+		$pengalihan 	= $this->session->set_userdata('pengalihan',$url_pengalihan);
+		// Ambil check login dari simple_login
+		$this->check_login->check($pengalihan);
 
 		$news = $this->Berita_model->detail($id_berita);
 

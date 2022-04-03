@@ -8,7 +8,7 @@
    {
      parent::__construct();
    //   Proteksi
-   if ($this->session->userdata('akses_level') != 'Admin') {
+   if ($this->session->userdata('akses_levelAdmin') != 'Admin') {
       $this->session->set_flashdata('success', 'Hak akses ditolak!');
       redirect(base_url('admin'));
    }
@@ -40,7 +40,7 @@
 
         $data = array(  
                       'id_konfigurasi' 		=> $configure->id_konfigurasi,
-                      'id_user'    				=> $this->session->userdata('id_user'),
+                      'id_user'    				=> $this->session->userdata('id_userAdmin'),
                       'namaweb'        		=> $i->post('namaweb', true),
                       'tagline'        		=> $i->post('tagline', true),
                       'email'          		=> $i->post('email', true),
@@ -109,7 +109,7 @@
 					// Lalu logo asli itu di copy untuk versi mini size ke folder assets/uploads/images/konfigurasi/thumbs
 					$config['image_library']	= 'gd2';
 					$config['source_image'] 	= './assets/uploads/logo/'.$data['logo']['file_name'];
-					$config['new_image'] 			= './assets/uploads/logo/thumbs/'.$data['logo']['file_name'];
+					$config['new_image'] 		= './assets/uploads/logo/thumbs/'.$data['logo']['file_name'];
 					$config['create_thumb'] 	= TRUE;
 					$config['maintain_ratio'] = TRUE;
 					$config['width']         	= 200;
@@ -128,7 +128,7 @@
 					$i = $this->input;
 					$data = [
 						'id_konfigurasi' 		=> $i->post('id_konfigurasi', true),
-						'id_user' 			 		=> $this->session->userdata('id_user'),
+						'id_user' 			 		=> $this->session->userdata('id_userAdmin'),
 						'logo'							=> $data['logo']['file_name'],
 					];
 					$this->Konfigurasi_model->edit($data);
@@ -154,9 +154,9 @@
      if($this->form_validation->run())
      {
       // Upload file
-			$config['upload_path']				= './assets/uploads/icon/';
-			$config['allowed_types']		 	= 'gif|jpg|png|jpeg';
-			$config['max_size']						= 2000;
+			$config['upload_path']			= './assets/uploads/icon/';
+			$config['allowed_types']		= 'gif|jpg|png|jpeg';
+			$config['max_size']				 = 2000;
 			$config['file_ext_tolower']		= true;
 			
 			// Cek File Gambar
@@ -213,7 +213,7 @@
 					$i = $this->input;
 					$data = [
 						'id_konfigurasi' 	=> $i->post('id_konfigurasi', true),
-						'id_user' 		 		=> $this->session->userdata('id_user'),
+						'id_user' 		 		=> $this->session->userdata('id_userAdmin'),
 						'icon'						=> $data['icon']['file_name'],
 					];
 					$this->Konfigurasi_model->edit($data);
@@ -222,9 +222,9 @@
 			}
 		}
 		$data = [
-			'title'				=> 'Edit Icon',
+			'title'			 => 'Edit Icon',
 			'configure'   => $configure,
-			'isi'					=> 'admin/konfigurasi/icon'
+			'isi'			  => 'admin/konfigurasi/icon'
 		];
 		$this->load->view('admin/layout/wrapper', $data, FALSE);
    }

@@ -98,9 +98,9 @@ class Berita_model extends CI_Model {
 			$this->db->set('gambar', $gambar);
 		}
 
-		$this->db->set('id_user', $this->session->userdata('id_user'));
+		$this->db->set('id_user', $this->session->userdata('id_userAdmin'));
 		$this->db->set('id_kategori_berita', $i->post('id_kategori_berita', true));
-		$this->db->set('updater', $this->session->userdata('nama'));
+		$this->db->set('updater', $this->session->userdata('namaAdmin'));
 		$this->db->set('slug_berita', url_title($i->post('judul_berita', true), 'dash', TRUE));
 		$this->db->set('judul_berita', $i->post('judul_berita'));
 		$this->db->set('isi', $i->post('isi_berita'));

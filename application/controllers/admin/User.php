@@ -101,7 +101,10 @@ class User extends CI_Controller {
 	public function hapus($id_user)
 	{
 		// Proteksi delete
-		$this->check_login->check();
+		$url_pengalihan = str_replace('index.php/', '', current_url());
+		$pengalihan 	= $this->session->set_userdata('pengalihan',$url_pengalihan);
+		// Ambil check login dari simple_login
+		$this->check_login->check($pengalihan);
 		
 		$this->User_model->hapus($id_user);
 		$this->session->set_flashdata('success', 'Data Berhasil dihapus!');

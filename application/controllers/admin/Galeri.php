@@ -217,7 +217,10 @@ class Galeri extends CI_Controller {
 	{
 		if ($id_galeri == NULL) {redirect('oops','refresh');}
 		// Proteksi delete
-		$this->check_login->check();
+		$url_pengalihan = str_replace('index.php/', '', current_url());
+		$pengalihan 	= $this->session->set_userdata('pengalihan',$url_pengalihan);
+		// Ambil check login dari simple_login
+		$this->check_login->check($pengalihan);
 
 		$Galleries = $this->Galeri_model->detail($id_galeri);
 

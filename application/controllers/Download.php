@@ -23,6 +23,18 @@ class Download extends CI_Controller {
 		$this->load->view('layout/wrapper', $data, FALSE);
 	}
 
+	// Download
+	public function unduh($id=null)
+	{
+		if ($id == NULL) {redirect('oops','refresh');}
+		
+		$download = $this->download_model->detail($id);
+		$data = 'assets/uploads/download/'.$download->gambar;
+		if (file_exists($data)) {
+			force_download($data, NULL);
+		}
+	}
+
 }
 
 /* End of file Download.php */

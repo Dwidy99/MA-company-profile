@@ -24,7 +24,7 @@ class Kontak extends CI_Controller {
 		$valid->set_rules('name', 'Nama', 'required');
 		$valid->set_rules('email', 'Email', 'required|valid_email');
 		$valid->set_rules('subject', 'Subject', 'required');
-		$valid->set_rules('message', 'Message', 'required|min_length[6]');
+		$valid->set_rules('message', 'Message', 'required|min_length[5]');
 
       if ($valid->run() == FALSE) {
          $data = array('title' 		=> 'Kontak - '.$configure->namaweb.' - '.$configure->tagline,

@@ -38,11 +38,11 @@ class Login extends CI_Controller {
             'id_userAdmin'      => $user->id_user,
             'namaAdmin'         => $user->nama,
             'usernameAdmin'     => $user->username,
-            'namaAdmin'         => $user->nama,
             'akses_levelAdmin'  => $user->akses_level
          );
          $this->session->set_userdata($data);
          $this->session->set_flashdata('success', 'Anda berhasil login');
+		//  var_dump($this->session->userdata()); die;
          redirect('admin/dashboard');
       } else {
          $this->session->set_flashdata('danger', 'Username atau Password Salah!');

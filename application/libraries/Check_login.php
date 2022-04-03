@@ -33,7 +33,7 @@ class check_login
       $this->CI->session->set_flashdata('success', 'Anda berhasil logout');
       redirect('login');
       // Biar yakin
-      $_SESSION = array('id_userAdmin' => '', 'usernameAdmin' => '', 'namaAdmin' => '', 'akses_levelAdmin' => '');
+    //   $_SESSION = array('id_userAdmin' => '', 'usernameAdmin' => '', 'namaAdmin' => '', 'akses_levelAdmin' => '');
       session_destroy();
    }
 }

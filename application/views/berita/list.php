@@ -20,7 +20,7 @@
                     <div class="col-lg-6 col-md-6">
                         <div class="section-tittle mb-30">
                             <h3>
-                                Semua Berita <?php if($this->uri->segment(3) != "") {echo $category->nama_kategori;} ?>
+                                Semua Berita
                             </h3>
                         </div>
                     </div>

@@ -96,7 +96,7 @@ class Layanan extends CI_Controller {
 					
 					$i = $this->input;
 					$data = [
-						'id_user' 			=> $this->session->userdata('id_user'),
+						'id_user' 			=> $this->session->userdata('id_userAdmin'),
 						'judul_layanan'		=> $i->post('judul_layanan', true),
 						'slug_layanan' 		=> url_title($i->post('judul_layanan', true), 'dash', TRUE),
 						'isi_layanan'		=> $i->post('isi_layanan', true),
@@ -209,7 +209,10 @@ class Layanan extends CI_Controller {
 	public function hapus($id_layanan)
 	{
 		// Proteksi delete
-		$this->check_login->check();
+		$url_pengalihan = str_replace('index.php/', '', current_url());
+		$pengalihan 	= $this->session->set_userdata('pengalihan',$url_pengalihan);
+		// Ambil check login dari simple_login
+		$this->check_login->check($pengalihan);
 
 		$services = $this->Layanan_model->detail($id_layanan);
 

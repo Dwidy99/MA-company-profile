@@ -51,7 +51,7 @@ class Layanan_model extends CI_Model {
 			$this->db->set('gambar', $gambar);
 		}
 
-		$this->db->set('id_user', $this->session->userdata('id_user'));
+		$this->db->set('id_user', $this->session->userdata('id_userAdmin'));
 		$this->db->set('judul_layanan', $i->post('judul_layanan'));
 		$this->db->set('slug_layanan', url_title($i->post('judul_layanan', true), 'dash', TRUE));
 		$this->db->set('isi_layanan', $i->post('isi_layanan'));

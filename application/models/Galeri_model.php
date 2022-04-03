@@ -30,7 +30,7 @@ class Galeri_model extends CI_Model {
 			$this->db->set('gambar', $gambar);
 		}
 
-		$this->db->set('id_user', $this->session->userdata('id_user'));
+		$this->db->set('id_user', $this->session->userdata('id_userAdmin'));
 		$this->db->set('judul_galeri', $i->post('judul_galeri'));
 		$this->db->set('isi_galeri', $i->post('isi_galeri'));
 		$this->db->set('website', $i->post('website', true));

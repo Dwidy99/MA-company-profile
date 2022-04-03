@@ -20,7 +20,7 @@ class Berita extends CI_Controller
       $this->load->library('pagination');
 
       $config['base_url']     = base_url('berita/index/');
-      $config['per_page']     = 9;
+      $config['per_page']     = 6;
       $config['total_rows']   = count($this->Berita_model->total_berita());
       $config['uri_segment']  = 3;
       
